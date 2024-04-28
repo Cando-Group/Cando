@@ -48,6 +48,9 @@
             zIndex: o.zIndex
         });
 
+        // Set distance from right
+        $self.css('right', o.scrollDistanceFromRight + 'px');
+
         // Active point overlay
         if (o.activeOverlay) {
             $('<div/>', {
@@ -138,7 +141,8 @@
         scrollTitle: false,          // Set a custom <a> title if required. Defaults to scrollText
         scrollImg: false,            // Set true to use image
         activeOverlay: false,        // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-        zIndex: 2147483647           // Z-Index for the overlay
+        zIndex: 2147483647,          // Z-Index for the overlay
+        scrollDistanceFromRight: 20  // Distance from right (px)
     };
 
     // Destroy scrollUp plugin and clean all modifications to the DOM
@@ -151,12 +155,11 @@
         if ($.fn.jquery.split('.')[1] >= 7) {
             $(window).off('scroll', scrollEvent);
 
-        // Else use the old .unbind()
-        } else {
-            $(window).unbind('scroll', scrollEvent);
-        }
-    };
+        // Else
+        $(window).unbind('scroll', scrollEvent);
+    }
+};
 
-    $.scrollUp = $.fn.scrollUp;
+$.scrollUp = $.fn.scrollUp;
 
 })(jQuery, window, document);
